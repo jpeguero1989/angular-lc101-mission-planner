@@ -1,4 +1,20 @@
 <h3>Equipment</h3>
 <ul>
-  <li *ngFor = "let equipment of equipments"><span></span>i>>{{equipment}}</li>
+  <li *ngFor = "let equipment of equipments">
+    <span *ngIf="beingEdited !== equipment else elsePartE">
+
+      <span (click)="edit(equipment)" >{{equipment}}</span>
+      <button (click)="remove(equipment)">remove</button>
+   </span>
+
+  <ng-template #elsePartE>
+
+    <input #updateEquipment (keyup.enter)="save(updateEquipment.value, equipment)" value="{{equipment}}"/>
+    <button (click)="save(updateEquipment.value, equipment)">save</button>
+ </ng-template>
+
+  </li>
 </ul>
+
+<input #equipment (keyup.enter)="add(equipment.value); equipment.value =''"/>
+<button (click)="add(equipment.value); equipment.value =''">Add</button>

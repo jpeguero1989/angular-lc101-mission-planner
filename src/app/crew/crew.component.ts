@@ -30,7 +30,7 @@ export class CrewComponent implements OnInit {
       }
     }
 
-    if (!this.isAMember)
+    if (!this.isAMember && memberName !=='')
     {
       this.crew.push({name: memberName, firstMission: isFirst});
     }
